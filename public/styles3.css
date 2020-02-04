@@ -1,0 +1,159 @@
+body{
+  text-align: center;
+  font-family: Montserrat;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: Montserrat;
+
+}
+
+/*container */
+.container-fluid{
+  padding:2% 10%;
+}
+
+.colored-section{
+  background-color: #24243e;
+  color: #fff;
+  position:relative;
+}
+.white-section{
+background-color: #fff;
+}
+/*big heading*/
+.big-heading{
+  font-family:Montserrat;
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+.section-heading{
+  font-size: 3rem;
+  line-height: 1.5;
+}
+/*navigation bar */
+
+.navbar{
+adding: 0 0 4.5rem;
+}
+.navbar-item{
+  padding: 0 18px;
+}
+.nav-link{
+  font-size: 1.2rem;
+  font-family: Montserrat;
+
+}
+.navbar-brand{
+  font-family: Ubuntu;
+}
+.button1{
+  margin: 0% 3% 10% 0;
+}
+.button2{
+  margin-right: 16px;
+}
+
+#title{
+  position: relative;
+   width: 100%;
+  text-align: left;
+
+}
+#title.container-fluid{
+  padding: 3% 15% 7%;
+  position: absolute;
+
+
+}
+.mybutton1{
+  position: absolute;
+  bottom: -1.5rem;
+  z-index: 2;
+  left: 35%;
+  background-color: #159EBC;
+  border-radius: 15px;
+  padding: 16px;
+  color: white;
+  font-size: 1.5rem;
+  border: 1px solid #24243e;
+}
+
+.icon{
+  color: #24243e;
+  margin-bottom: 1rem;
+}
+.icon:hover{
+  color:#302b63;
+}
+.css-input {
+  padding-left: 2px;
+  font-size: 16px;
+  border-width: 1px;
+  height:35px;
+  border-color: #e62e00;
+  background-color: #FFFFFF;
+  color: #5e5e5e;
+  border-style: solid;
+  border-radius: 3px;
+  box-shadow: 3px 2px 6px rgba(66,66,66,.40);
+  text-shadow: 0px 0px 5px rgba(66,66,66,.75);
+  width:300px;
+
+
+
+
+}
+.css-input:focus {
+  outline:none;
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color:#d0451b;
+	border-radius:3px;
+	border:1px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #854629;
+  height: 35px;
+
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color:#bc3315;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+#features{
+
+  position: relative;
+  z-index: -10;
+
+
+}
+.feature-title{
+    font-size: 1.5rem;
+}
+
+.feature-box{
+
+  padding:5% 0;
+}
+@media (max-width:1028px) {
+   #title{
+     text-align: center;
+   }
+}
+
+.con{
+  padding-top: 50px;
+}

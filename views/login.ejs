@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles2.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script>
+    function myFunction(){
+      	var password=$(".password").val();
+        var email=$(".email").val();
+
+
+        if(email.length==0){
+
+          $(".email").css("border-color","red");
+          $(".email").css("border-width","2px");
+          $(".alertemailtext").text("Please enter your Email to continue");
+          return false;
+        }else if(!email.includes('@' && '.')){
+          $(".email").css("border-color","red");
+          $(".email").css("border-width","2px");
+          $(".alertemailtext").text("type correct email address");
+          return false;
+        }else{
+          $(".email").css("border-color","#ccc");
+          $(".email").css("border-width","1px");
+          $(".alertemailtext").text("");
+        }
+        if(password.length==0){
+
+          $(".password").css("border-color","red");
+          $(".password").css("border-width","2px");
+          $(".alertpasswordtext").text("Please enter your Password to continue");
+          return false;
+        } else
+          if(password.length<=6){
+            $(".password").css("border-color","red");
+            $(".password").css("border-width","2px");
+             $(".alertpasswordtext").text("Password length must be greater than 6");
+             return false;
+          }else{
+            $(".password").css("border-color","#ccc");
+            $(".password").css("border-width","1px");
+            $(".alertpasswordtext").text("");
+          }
+
+
+    return true;
+
+    }
+        </script>
+  </head>
+  <body>
+    <div class="container mt-5">
+<div class="centered">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h1>Login</h1>
+          <!-- Makes POST request to /login route -->
+          <form action="/login" onsubmit="return myFunction()" method="POST">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control email" name="username">
+              <div class="alertemailtext rdstyle">
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control password" name="password">
+              <div class="alertpasswordtext rdstyle">
+
+              </div>
+            </div>
+            <button type="submit" class="btn btn-danger" onclick="myFunction()">Login</button>
+            <button type="submit" class="btn btn-danger" onClick="window.location='register';">New user? Register here</button>
+  <div class="errorclass"><%= error %></div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign in with Google
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

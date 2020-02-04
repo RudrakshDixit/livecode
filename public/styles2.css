@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto|Ubuntu&display=swap');
+
+body{
+  background-image: linear-gradient(to right, #0f0c29,#302b63,#24243e);
+
+}
+.centered {
+  position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+left: 30%;
+width: 50%;
+
+}
+.btn btn-dark
+{
+  color: #DC1A1A;
+}
+.reg{
+  text-align: center;
+  padding-bottom: 1rem;
+}
+.rdstyle{
+  font-size: .7rem;
+  color: #a3a3a3;
+  text-align: left;
+  margin-right: 10%;
+  margin-bottom: .4rem;
+  margin-top: .1;
+}
+.tnc{
+  margin-bottom: .5rem;
+}
+.errorclass{
+  margin-top: .5rem;
+  font-size: .8rem;
+  font-family: 'Montserrat', sans-serif;
+ color: red;
+}

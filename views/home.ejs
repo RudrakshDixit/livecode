@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Code</title>
+
+        <link rel="stylesheet" href="styles.css">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+  </head>
+
+  <body>
+<!-- <textarea oninput="updatecode()" id="input-id"></textarea> -->
+
+
+<div class="wrapper">
+
+<div class="grid1">
+  <!-- Top row -->
+  <nav class="navbar navbar-light">
+  <a class=" mr-auto"><h1 class="title">LiveCode</h1></a>
+
+    <button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='premium';"><img src="/images/premium.png" alt="invite"><span class="t">Premium</span></button>
+    <button class="btn  my-2 my-sm-0 mycol" type="submit" onclick="copyurl()"><span class="t">Invite</span><img class="im"src="/images/invite.png" alt="invite"></button>
+
+
+</nav>
+
+</div>
+<div class="grid2">
+<div class="lines">
+<ul class="myTable"></ul>
+<textarea class="p1 lined" oninput="updatecode()"  id="input-id" placeholder="Type/Paste your code here!"></textarea>
+</div>
+  <div class="p2">
+    <!-- Bottom right -->
+    <span class="mainc overflow-auto" id="down">
+
+  </span>
+
+  <span class="foooter">
+      <form id="message-form">
+        <input type="text" name="message" id="input-id2" placeholder="message">
+        <button type="submit"  id="submit-btn"><img src="images/s.png" alt="send"></button>
+      </form>
+    </div>
+
+  </span>
+  </div>
+</div>
+</div>
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="index.js">  </script>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            crossorigin="anonymous">
+    </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="moment.js">
+    </script>
+  </body>
+</html>
