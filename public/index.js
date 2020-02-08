@@ -2,7 +2,7 @@
 
 let socket = io();
 socket.on('connect',function(){
-
+count();
   //present
  let ob=window.location.pathname.split( '/' );
   socket.emit('join',ob,function(err){
@@ -16,6 +16,7 @@ socket.on('connect',function(){
 
   });
 });
+count();
 
 socket.on('disconnect',function(){
 
@@ -23,6 +24,8 @@ socket.on('disconnect',function(){
 });
 
 socket.on('updateUsersList',function(users){
+  document.getElementById("onlinemem").innerHTML =users.length;
+
 
 });
 
@@ -49,8 +52,11 @@ e.preventDefault();
 if(document.getElementById("input-id2").value.trim()==""){
   alert('Type something');
 }else{
+ var x = document.getElementById("myAnchor").getAttribute("title");
+
+
   socket.emit('createMessage',{
-    from: 'User',
+    from: x,
     text: document.getElementById("input-id2").value.trim(),
   });
 
