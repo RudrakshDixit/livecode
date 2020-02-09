@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Docs</title>
+
+        <link rel="stylesheet" href="styles.css">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+          <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+
+
+<div class="wrapper">
+
+<div class="grid1">
+  <!-- Top row -->
+  <nav class="navbar navbar-light">
+  <a class=" mr-auto"><h1 class="title" onclick="window.location='/';">LiveCode</h1></a>
+
+  <% if (islog=="true") { %>
+    <div id="myAnchor" title=<%= name %>></div>
+
+
+  <% } else { %>
+    <div id="myAnchor" title="Guest"></div>
+<button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='login';"><span class="t">Login</span></button>
+  <%  } %>
+
+    <!-- <button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='premium';"><img src="/images/premium.png" alt="invite"><span class="t">Premium</span></button> -->
+    <button class="btn  my-2 my-sm-0 mycol" type="submit" onclick="copyurl()"><span class="t">Invite</span><img class="im"src="/images/invite.png" alt="invite"></button>
+
+
+</nav>
+
+</div>
+
+<div class="grid2">
+<div class="container">
+  <h1>Documentation</h1>
+  <p>LiveCode is a reliable, realtime code sharing platform. A user can join any room anonymously or can login and join the room.
+Premium members enjoy much more features like convert their hand written code to text format and they can save their work on our secure database.
+
+<br><br>
+
+More details will be added soon..
+  </p>
+</div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            crossorigin="anonymous">
+    </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

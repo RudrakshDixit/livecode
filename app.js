@@ -31,7 +31,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://SIRI:vankayalapati@livecode-vrgnr.mongodb.net/userDB", {useNewUrlParser: true,useUnifiedTopology: true});
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
@@ -101,6 +101,20 @@ app.get('/premium',function(req,res){
   res.render("premium");
   else
   res.redirect('/login');
+});
+
+app.get('/docs',function(req,res){
+  if(req.isAuthenticated())
+  res.render("docs",{islog: "true",name: req.user.name.split(" ")[0]});
+  else
+  res.render("docs",{islog: "false",name: ""});
+});
+
+app.get('/privacy-policy',function(req,res){
+  if(req.isAuthenticated())
+  res.render("privacyPolicy",{islog: "true",name: req.user.name.split(" ")[0]});
+  else
+  res.render("privacyPolicy",{islog: "false",name: ""});
 });
 
 app.get("/:name",function(req,res){

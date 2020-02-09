@@ -4,6 +4,11 @@ body{
   background-image: linear-gradient(to right, #0f0c29,#302b63,#24243e);
 
 }
+.pp{
+  cursor: pointer;
+  color: green;
+  font-weight: bold;
+}
 .centered {
   position: absolute;
 top: 50%;
