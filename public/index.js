@@ -41,7 +41,13 @@ socket.on('newMessage',function(message){
   updateScroll();
 });
 socket.on('newCode',function(code){
-
+  function updatecode(){
+  count();
+    socket.emit('createCode',{
+      text: document.querySelector('#input-id').value,
+      idd: socket.id,
+    });
+  }
   count();
   document.getElementById('input-id').value = code.text;
 
@@ -81,13 +87,7 @@ function updateScroll(){
     element.scrollTop = element.scrollHeight;
 }
 
-function updatecode(){
-count();
-  socket.broadcast.emit('createCode',{
-    text: document.querySelector('#input-id').value,
-    idd: socket.id,
-  });
-}
+
 function count(){
 
   $(".myTable").empty();
