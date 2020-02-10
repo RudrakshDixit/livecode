@@ -5,6 +5,8 @@
     <title>Docs</title>
 
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles3.css">
+
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
@@ -23,17 +25,19 @@
   <nav class="navbar navbar-light">
   <a class=" mr-auto"><h1 class="title" onclick="window.location='/';">LiveCode</h1></a>
 
-  <% if (islog=="true") { %>
-    <div id="myAnchor" title=<%= name %>></div>
+
+            <% if (islog=="true") { %>
+              <h2 class="wel"> Welcome <%= name %></h2>
+            <% } else { %>
+
+              <button class="btn btn-danger my-2 my-sm-0 button2  "  onClick="window.location='register';">SignUp</button>
+              <button class="btn btn-outline-light my-2 my-sm-0 button2"  onClick="window.location='login';">Login</button>
 
 
-  <% } else { %>
-    <div id="myAnchor" title="Guest"></div>
-<button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='login';"><span class="t">Login</span></button>
-  <%  } %>
+          <%  } %>
+
 
     <!-- <button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='premium';"><img src="/images/premium.png" alt="invite"><span class="t">Premium</span></button> -->
-    <button class="btn  my-2 my-sm-0 mycol" type="submit" onclick="copyurl()"><span class="t">Invite</span><img class="im"src="/images/invite.png" alt="invite"></button>
 
 
 </nav>

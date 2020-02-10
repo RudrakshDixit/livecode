@@ -110,15 +110,3 @@ function lineCount( text ) {
     return nLines+1;
 
 }
-function copyurl(){
-  var text=window.location.href;
-  navigator.clipboard.writeText(text).then(function() {
-    alert('link copied');
-  }, function(err) {
-    alert('error try again later');
-  });
-
-
-
-
-}

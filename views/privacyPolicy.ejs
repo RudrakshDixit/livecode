@@ -24,16 +24,16 @@
   <a class=" mr-auto"><h1 class="title" onclick="window.location='/';">LiveCode</h1></a>
 
   <% if (islog=="true") { %>
-    <div id="myAnchor" title=<%= name %>></div>
-
-
+    <h2 class="wel"> Welcome <%= name %></h2>
   <% } else { %>
-    <div id="myAnchor" title="Guest"></div>
-<button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='login';"><span class="t">Login</span></button>
-  <%  } %>
+
+    <button class="btn btn-danger my-2 my-sm-0 button2  "  onClick="window.location='register';">SignUp</button>
+    <button class="btn btn-outline-light my-2 my-sm-0 button2"  onClick="window.location='login';">Login</button>
+
+
+<%  } %>
 
     <!-- <button class="btn  my-2 my-sm-0 mr-2 mycol" type="submit" onClick="window.location='premium';"><img src="/images/premium.png" alt="invite"><span class="t">Premium</span></button> -->
-    <button class="btn  my-2 my-sm-0 mycol" type="submit" onclick="copyurl()"><span class="t">Invite</span><img class="im"src="/images/invite.png" alt="invite"></button>
 
 
 </nav>

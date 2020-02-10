@@ -256,6 +256,6 @@ app.use((req,res,next)=>{
   res.send("404");
 
 });
-server.listen(process.env.PORT||3000,function(){
-  console.log("server is started on port 3000");
+server.listen(process.env.PORT||80,function(){
+  console.log("server is started on port 80");
 });
