@@ -40,22 +40,18 @@ socket.on('newMessage',function(message){
 
   updateScroll();
 });
-socket.on('newCode',function(code){
-  function updatecode(){
-  count();
-    socket.emit('createCode',{
-      text: document.querySelector('#input-id').value,
-      idd: socket.id,
-    });
-  }
-  count();
-  document.getElementById('input-id').value = code.text;
 
-
-
-
-});
-
+function updatecode(){
+count();
+  socket.emit('createCode',{
+    text: document.querySelector('#input-id').value,
+    idd: socket.id,
+  });
+  socket.on('newCode',function(code){
+    count();
+    document.getElementById('input-id').value = code.text;
+  });
+}
 document.querySelector('#submit-btn').addEventListener('click',function(e){
 e.preventDefault();
 
