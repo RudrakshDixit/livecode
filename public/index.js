@@ -1,5 +1,4 @@
 //jshint esversion:6
-
 let socket = io();
 socket.on('connect',function(){
 count();
@@ -42,8 +41,11 @@ socket.on('newMessage',function(message){
   updateScroll();
 });
 socket.on('newCode',function(code){
+
 count();
-document.getElementById('input-id').value = code.text;
+
+  document.getElementById('input-id').value = code.text;
+
 });
 
 document.querySelector('#submit-btn').addEventListener('click',function(e){
@@ -65,7 +67,6 @@ if(document.getElementById("input-id2").value.trim()==""){
 
 }
 
-//creating a new message
 
 
 document.getElementById("input-id2").value="";
@@ -79,8 +80,10 @@ function updateScroll(){
 }
 
 function updatecode(){
+
   socket.emit('createCode',{
     text: document.querySelector('#input-id').value,
+    id: socket.id,
   });
 }
 function count(){

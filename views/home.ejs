@@ -13,13 +13,19 @@
           <script type="text/javascript">
           function copyurl(){
 
-            var copyText = window.location.href;
+            var sURL = window.location.href;
 
+         sTemp = "<input id=\"copy_to_Clipboard\" value=\"" + sURL + "\" />"
 
+         $("body").append(sTemp);
 
-            document.execCommand("copy");
+         $("#copy_to_Clipboard").select();
 
-                alert("Link copied");
+         document.execCommand("copy");
+
+         $("#copy_to_Clipboard").remove();
+        alert("Link copied")
+
           }
           </script>
   </head>

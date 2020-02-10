@@ -224,14 +224,14 @@ io.on('connection', function(socket){
 
 
     socket.on('createCode',function(message){
-
       let user=users.getUser(socket.id);
-      if(user){
-        if(message.text!=undefined){
-          map[user.room] = message.text;
-        io.to(user.room).emit('newCode',generateCode(message.text));
-        }
-      }
+        if(user){
+          if(socket.id!=message.id){
+            io.broadcast.to(user.room).emit('newCode',generateCode(map[user.room]));
+          }
+        map[user.room] = message.text;
+}
+
     });
 
 
