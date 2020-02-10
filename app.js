@@ -227,7 +227,7 @@ io.on('connection', function(socket){
       let user=users.getUser(socket.id);
         if(user){
           if(socket.id!=message.id){
-            io.broadcast.to(user.room).emit('newCode',generateCode(map[user.room]));
+            io.to(user.room).emit('newCode',generateCode(map[user.room]));
           }
         map[user.room] = message.text;
 }
