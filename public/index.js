@@ -44,6 +44,9 @@ socket.on('newCode',function(code){
 if(code.idd!=socket.id){
   count();
   document.getElementById('input-id').value = code.text;
+}else{
+  document.getElementById('input-id').value = "code.text";
+
 }
 
 
