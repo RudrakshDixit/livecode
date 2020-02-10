@@ -200,6 +200,7 @@ app.post("/login", function(req, res){
 var map = {};
 
 //do not touch, its an art
+//do not touch, its an art
 io.on('connection', function(socket){
 
 
@@ -223,15 +224,16 @@ io.on('connection', function(socket){
   });
 
 
-    socket.on('createCode',function(message){
-      let user=users.getUser(socket.id);
-        if(user){
-          if(socket.id!=message.id){
-            io.to(user.room).emit('newCode',generateCode(message.text));
-          }
-        map[user.room] = message.text;
-      }
+    socket.on('createCode',function(message,idd){
 
+      let user=users.getUser(socket.id);
+      if(user){
+        if(message.text!=undefined&&user.id!=idd){
+
+        io.to(user.room).emit('newCode',generateCode(message.text));
+        map[user.room] = message.text;
+        }
+      }
     });
 
 
