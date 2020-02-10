@@ -1,6 +1,7 @@
-let generateCode=(text)=>{
+let generateCode=(text,id)=>{
   return{
     text,
+    id,
   };
 };
 

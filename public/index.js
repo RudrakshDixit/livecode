@@ -1,5 +1,4 @@
 //jshint esversion:6
-var writing=0;
 let socket = io();
 socket.on('connect',function(){
 count();
@@ -42,10 +41,12 @@ socket.on('newMessage',function(message){
   updateScroll();
 });
 socket.on('newCode',function(code){
-if(writing==0){
+if(code.idd!=socket.id){
   count();
   document.getElementById('input-id').value = code.text;
 }
+
+
 
 
 });
@@ -82,13 +83,11 @@ function updateScroll(){
 }
 
 function updatecode(){
-  writing=1;
 count();
   socket.emit('createCode',{
     text: document.querySelector('#input-id').value,
     idd: socket.id,
   });
-  writing=0;
 }
 function count(){
 

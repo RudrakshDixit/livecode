@@ -216,9 +216,9 @@ io.on('connection', function(socket){
 
         let user=users.getUser(socket.id);
         if(map[user.room]!=undefined)
-          io.to(user.room).emit('newCode',generateCode(map[user.room]));
+          io.to(user.room).emit('newCode',generateCode(map[user.room],user.id));
         }else{
-            io.to(user.room).emit('newCode',generateCode(""));
+            io.to(user.room).emit('newCode',generateCode("",user.id));
         }
 
   });
@@ -229,7 +229,7 @@ io.on('connection', function(socket){
       let user=users.getUser(socket.id);
       if(user){
         if(message.text!=undefined){
-            io.to(user.room).emit('newCode',generateCode(message.text));
+            io.to(user.room).emit('newCode',generateCode(message.text,idd));
         map[user.room] = message.text;
         }
       }
