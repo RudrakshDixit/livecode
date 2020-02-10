@@ -228,9 +228,9 @@ io.on('connection', function(socket){
 
       let user=users.getUser(socket.id);
       if(user){
-        if(message.text!=undefined&&user.id!=idd){
-
-        io.to(user.room).emit('newCode',generateCode(message.text));
+        if(message.text!=undefined){
+          if(socket.id!=idd)
+            io.to(user.room).emit('newCode',generateCode(message.text));
         map[user.room] = message.text;
         }
       }
