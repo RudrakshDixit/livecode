@@ -41,13 +41,9 @@ socket.on('newMessage',function(message){
   updateScroll();
 });
 socket.on('newCode',function(code){
-if(code.idd!=socket.id){
+
   count();
   document.getElementById('input-id').value = code.text;
-}else{
-  document.getElementById('input-id').value = "code.text";
-
-}
 
 
 
@@ -87,7 +83,7 @@ function updateScroll(){
 
 function updatecode(){
 count();
-  socket.emit('createCode',{
+  socket.broadcast.emit('createCode',{
     text: document.querySelector('#input-id').value,
     idd: socket.id,
   });
