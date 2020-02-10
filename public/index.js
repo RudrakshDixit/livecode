@@ -42,7 +42,7 @@ socket.on('newMessage',function(message){
 });
 socket.on('newCode',function(code){
 
-count();
+  count();
 
   document.getElementById('input-id').value = code.text;
 
@@ -80,7 +80,7 @@ function updateScroll(){
 }
 
 function updatecode(){
-
+count();
   socket.emit('createCode',{
     text: document.querySelector('#input-id').value,
     id: socket.id,
