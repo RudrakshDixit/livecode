@@ -237,7 +237,7 @@ io.on('connection', function(socket){
     socket.on('createMessage',function(message){
       let user=users.getUser(socket.id);
       if(user){
-        socket.to(user.room).emit('newMessage',generateMessage(message.from,message.text));
+        io.to(user.room).emit('newMessage',generateMessage(message.from,message.text));
       }
     });
 
