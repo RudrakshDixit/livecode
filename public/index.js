@@ -84,10 +84,11 @@ function updateScroll(){
 
 
 function updatecode(){
-  console.log(document.getElementById("input-id").value);
+
   socket.emit('createCode',{
     text: document.getElementById("input-id").value,
   });
+  count();
 }
 
 
