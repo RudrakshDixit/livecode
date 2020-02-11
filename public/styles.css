@@ -66,7 +66,6 @@ overflow-x: hidden;
 flex: 1;
 border: 0.5px solid white;
 padding: 4px;
-padding-right: 0;
 background-color:#282C35 ;
 overflow: auto;
 
@@ -115,14 +114,13 @@ overflow: auto;
 }
 .mainc{
   height: 69%;
-  width: 100%;
-  list-style-type: none;
+ list-style-type: none;
  color: #E8E8E8;
   border-bottom: 0.5px solid white;
   padding-bottom: 8px;
   position: absolute;
   overflow: auto;
-  overflow-x: hidden;
+
 
 }
 .mycol{
