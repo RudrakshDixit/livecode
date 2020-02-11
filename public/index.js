@@ -23,7 +23,6 @@ socket.on('disconnect',function(){
 });
 
 socket.on('updateUsersList',function(users){
-  count();
   document.getElementById("onlinemem").innerHTML =users.length;
 
 
@@ -41,12 +40,14 @@ socket.on('newMessage',function(message){
 
   updateScroll();
 });
+
+
 socket.on('newCode',function(code){
 if(document.getElementById('input-id').value.trim() != code.text.trim()){
   document.getElementById('input-id').value = code.text;
-  count();
-}
 
+}
+count();
 });
 
 document.querySelector('#submit-btn').addEventListener('click',function(e){
@@ -81,11 +82,16 @@ function updateScroll(){
     element.scrollTop = element.scrollHeight;
 }
 
+
 function updatecode(){
+  console.log(document.getElementById("input-id").value);
   socket.emit('createCode',{
-    text: document.querySelector('#input-id').value,
+    text: document.getElementById("input-id").value,
   });
 }
+
+
+
 function count(){
 
   $(".myTable").empty();
