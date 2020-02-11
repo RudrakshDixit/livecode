@@ -199,8 +199,6 @@ app.post("/login", function(req, res){
 
 var map = {};
 
-//do not touch, its an art
-//do not touch, its an art
 io.on('connection', function(socket){
 
 
@@ -216,21 +214,21 @@ io.on('connection', function(socket){
 
         let user=users.getUser(socket.id);
         if(map[user.room]!=undefined)
-          io.to(user.room).emit('newCode',generateCode(map[user.room],user.id));
+          io.to(user.room).emit('newCode',generateCode(map[user.room]));
         }else{
-            io.to(user.room).emit('newCode',generateCode("",user.id));
+            io.to(user.room).emit('newCode',generateCode(""));
         }
 
   });
 
 
-    socket.on('createCode',function(message,idd){
+    socket.on('createCode',function(message){
 
       let user=users.getUser(socket.id);
       if(user){
         if(message.text!=undefined){
-            io.in(user.room).emit('newCode',generateCode(message.text,idd));
-        map[user.room] = message.text;
+          map[user.room] = message.text;
+        io.to(user.room).emit('newCode',generateCode(message.text));
         }
       }
     });
@@ -239,7 +237,7 @@ io.on('connection', function(socket){
     socket.on('createMessage',function(message){
       let user=users.getUser(socket.id);
       if(user){
-        io.in(user.room).emit('newMessage',generateMessage(message.from,message.text));
+        socket.broadcast.to(user.room).emit('newMessage',generateMessage(message.from,message.text));
       }
     });
 
