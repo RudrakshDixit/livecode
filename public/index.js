@@ -16,7 +16,6 @@ count();
 
   });
 });
-count();
 
 socket.on('disconnect',function(){
 
@@ -24,6 +23,7 @@ socket.on('disconnect',function(){
 });
 
 socket.on('updateUsersList',function(users){
+  count();
   document.getElementById("onlinemem").innerHTML =users.length;
 
 
@@ -42,8 +42,11 @@ socket.on('newMessage',function(message){
   updateScroll();
 });
 socket.on('newCode',function(code){
-count();
-document.getElementById('input-id').value = code.text;
+if(document.getElementById('input-id').value.trim() != code.text.trim()){
+  document.getElementById('input-id').value = code.text;
+  count();
+}
+
 });
 
 document.querySelector('#submit-btn').addEventListener('click',function(e){

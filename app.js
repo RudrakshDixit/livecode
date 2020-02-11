@@ -214,9 +214,9 @@ io.on('connection', function(socket){
 
         let user=users.getUser(socket.id);
         if(map[user.room]!=undefined)
-          io.to(user.room).emit('newCode',generateCode(map[user.room]));
+          io.in(user.room).emit('newCode',generateCode(map[user.room]));
         }else{
-            io.to(user.room).emit('newCode',generateCode(""));
+            io.in(user.room).emit('newCode',generateCode(""));
         }
 
   });
@@ -227,8 +227,8 @@ io.on('connection', function(socket){
       let user=users.getUser(socket.id);
       if(user){
         if(message.text!=undefined){
-          map[user.room] = message.text;
-        io.to(user.room).emit('newCode',generateCode(message.text));
+        map[user.room] = message.text;
+        socket.broadcast.to(user.room).emit('newCode',generateCode(message.text));
         }
       }
     });
