@@ -24,7 +24,7 @@ socket.on('disconnect',function(){
 
 socket.on('updateUsersList',function(users){
   document.getElementById("onlinemem").innerHTML =users.length;
-
+count();
 
 });
 
@@ -84,7 +84,6 @@ function updateScroll(){
 
 
 function updatecode(){
-
   socket.emit('createCode',{
     text: document.getElementById("input-id").value,
   });

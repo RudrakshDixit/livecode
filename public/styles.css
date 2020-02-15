@@ -137,3 +137,49 @@ overflow: auto;
 
 
 }
+.cc{
+  color: green;
+}
+.model{
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  background-color: white;
+  border: 1px solid black;
+display: none;
+  width: 50%;
+  height: 200px;
+}
+.cross{
+  position: absolute;
+  color: grey;
+  font-weight: bold;
+  right: 18px;
+  top: 18px;
+  cursor: pointer;
+}
+.modeltext{
+  font-family: "Montserrat";
+  color: #a3a3a3;
+  position: absolute;
+  font-size: 40px;
+  left:8px;
+  top: 32px;
+}
+.ptext{
+
+  font-size: 20px;
+  position: absolute;
+  top: 90px;
+  left: 8px;
+}
+.ok{
+  position: absolute;
+  color: white;
+  padding: 8px;
+  right: 8px;
+  bottom: 8px;
+  background-color: firebrick;
+  font-size: 20px;
+  cursor: pointer;
+}

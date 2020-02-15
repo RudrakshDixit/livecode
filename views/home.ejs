@@ -3,7 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Code</title>
+  <link rel="icon" href="/images/favicon.ico?v=2" type="image/x-icon" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGP0FFSDNC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-XGP0FFSDNC');
+    </script>
         <link rel="stylesheet" href="styles.css">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -24,11 +33,14 @@
          document.execCommand("copy");
 
          $("#copy_to_Clipboard").remove();
-        alert("Link copied")
+        myFunction();
 
           }
           </script>
-  </head>
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js">
+
+</script>
+</head>
 
   <body>
 
@@ -66,7 +78,7 @@
 
 <div class="lines">
 <ul class="myTable"></ul>
-<textarea class="p1 lined" oninput="updatecode()"  spellcheck="false"
+<textarea class="p1 lined " oninput="updatecode()"  spellcheck="false"
 id="input-id" placeholder="Type/Paste your code here!" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"></textarea>
 </div>
 
@@ -89,8 +101,22 @@ id="input-id" placeholder="Type/Paste your code here!" onkeydown="if(event.keyCo
 </div>
 
 
-
-
+<div class="model">
+  <div class="cross" onclick="myFunction1()">
+    X
+  </div>
+  <h1 class="modeltext">Link copied to the clipboard</h1>
+  <h1 class="ptext">Invite people by sharing the copied link with them</h1>
+  <h1 class="ok" onclick="myFunction1()">OK</h4>
+</div>
+<script>
+function myFunction() {
+    document.querySelector(".model").style.display = "flex";
+}
+function myFunction1() {
+    document.querySelector(".model").style.display = "none";
+}
+</script>
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="index.js">  </script>
 
