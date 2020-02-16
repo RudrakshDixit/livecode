@@ -42,7 +42,7 @@ mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
   name:String,
-  email: {type: String, unique: true},
+ email : { type: String, require: true, index:true, unique:true,sparse:true},
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   password: String,
