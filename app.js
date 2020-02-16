@@ -248,8 +248,8 @@ app.post('/forgot', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'gmail',
           address: 'smtp.gmail.com',
-          port: 465,
-          secure: true,
+          port: 25,
+          secure: false,
           auth: {
             user: 'LiveCode05@gmail.com',
             pass: process.env.GMAILPW
