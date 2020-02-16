@@ -25,7 +25,6 @@ let io=socketIO(server);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(flash());
-nodemailer.createTransport({ sendmail: true });
 
 
 
@@ -247,9 +246,10 @@ app.post('/forgot', function(req, res, next) {
       },
       function(token, user, done) {
         var smtpTransport = nodemailer.createTransport({
+          sendmail: true,
           service: 'gmail',
           address: 'smtp.gmail.com',
-          port: 25,
+          port: 465,
           secure: false,
           auth: {
             user: 'LiveCode05@gmail.com',
