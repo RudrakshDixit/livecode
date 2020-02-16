@@ -249,8 +249,8 @@ app.post('/forgot', function(req, res, next) {
           sendmail: true,
           service: 'gmail',
           address: 'smtp.gmail.com',
-          port: 465,
-          secure: false,
+          port: 25,
+          secure: true,
           auth: {
             user: 'LiveCode05@gmail.com',
             pass: process.env.GMAILPW
