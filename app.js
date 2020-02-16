@@ -25,6 +25,7 @@ let io=socketIO(server);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(flash());
+nodemailer.createTransport({ sendmail: true });
 
 
 
