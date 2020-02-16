@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
+<title>Reset</title>
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"><link rel="stylesheet" href="styles2.css">
   <title>Reset Password</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/styles.css">
+
+<script type="text/javascript">
+  function myFunction(){
+    console.log("f");
+    var p1=$(".p1").val();
+    var p2=$(".p2").val();
+    if(p1.length<6||p2.length<6){
+      $(".p1").css("border-color","red");
+      $(".p1").css("border-width","2px");
+      $(".alertemailtext").text("Length of the password should be greater than 5");
+      $(".p2").css("border-color","red");
+      $(".p2").css("border-width","2px");
+      return false;
+    }else if(p1!==p2){
+      $(".p1").css("border-color","red");
+      $(".p1").css("border-width","2px");
+      $(".alertemailtext").text("Password does not match");
+      $(".p2").css("border-color","red");
+      $(".p2").css("border-width","2px");
+      return false;
+    }
+return true;
+  }
+
+</script>
+
 </head>
 
 <body>
+
+
 <div class="container mt-5">
   <h1>Reset Password</h1>
 
@@ -19,26 +45,34 @@
         <div class="card-body">
 
           <!-- Makes POST request to /register route -->
-          <form action="/reset/<%= token %>" method="POST">
+          <form action="/reset/<%= token %>"  onsubmit="return myFunction()" method="POST">
 
 
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" class="form-control password" name="password">
+              <input type="password" class="form-control password p1" name="password1">
               <div class="alertpasswordtext rdstyle">
 
               </div>
               <div class="form-group">
                 <label for="password">Confirm Password:</label>
-                <input type="password" class="form-control password" name="password">
+                <input type="password" class="form-control password p2" name="password2">
                 <div class="alertpasswordtext rdstyle">
 
                 </div>
 
-            <button type="submit" class="btn btn-danger" >Update Password</button>
+            <button type="submit" class="btn btn-danger mt-2" >Update Password</button>
 
           </form>
+          <div class="alertemailtext rdstyle errorclass">
 
+          </div>
+          <div class="errorclass">
+            <%= msg %>
+          </div>
+          <div class="successclass">
+            <%=smsg%>
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +82,9 @@
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 </body>

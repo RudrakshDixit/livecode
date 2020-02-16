@@ -19,9 +19,10 @@
       </script>
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
       <script>
     function myFunction(){
-      	var password=$(".password").val();
         var email=$(".email").val();
 
 
@@ -48,10 +49,10 @@
           $(".alertpasswordtext").text("Please enter your Password to continue");
           return false;
         } else
-          if(password.length<=6){
+          if(password.length<=5){
             $(".password").css("border-color","red");
             $(".password").css("border-width","2px");
-             $(".alertpasswordtext").text("Password length must be greater than 6");
+             $(".alertpasswordtext").text("Password length must be greater than 5");
              return false;
           }else{
             $(".password").css("border-color","#ccc");
@@ -93,7 +94,9 @@
             <button type="submit" class="btn btn-danger" onClick="window.location='register';">New user? Register here</button>
   <div class="errorclass"><%= error %></div>
           </form>
-
+<div class="Forgot" onclick="window.location='forgot'">
+  Forgot password? reset here
+</div>
         </div>
       </div>
     </div>
