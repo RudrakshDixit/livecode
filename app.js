@@ -289,7 +289,7 @@ async.waterfall([
     if (sanitizedUser){
         sanitizedUser.setPassword(req.body.password1, function(){
             sanitizedUser.save();
-            return res.render('reset',{msg:"",smsg: "Password changed successfully",token:""});
+            res.redirect("/login");
         });
     } else {
       return res.render('reset',{msg:"User doesn't exists",smsg: "",token:""});

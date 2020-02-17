@@ -4,7 +4,13 @@
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="icon" href="/images/favicon.ico?v=2" type="image/x-icon" />
-
+<style media="screen">
+.forgot{
+color: #302b63;
+font-family: "Montserrat";
+cursor: pointer;
+}
+</style>
     <link rel="stylesheet" href="styles2.css">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -94,7 +100,7 @@
             <button type="submit" class="btn btn-danger" onClick="window.location='register';">New user? Register here</button>
   <div class="errorclass"><%= error %></div>
           </form>
-<div class="Forgot" onclick="window.location='forgot'">
+<div class="forgot" onclick="window.location='forgot'">
   Forgot password? reset here
 </div>
         </div>
