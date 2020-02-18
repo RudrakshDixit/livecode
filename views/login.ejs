@@ -30,8 +30,6 @@ cursor: pointer;
       <script>
     function myFunction(){
         var email=$(".email").val();
-
-
         if(email.length==0){
 
           $(".email").css("border-color","red");
@@ -97,7 +95,7 @@ cursor: pointer;
               </div>
             </div>
             <button type="submit" class="btn btn-danger" onclick="myFunction()">Login</button>
-            <button type="submit" class="btn btn-danger" onClick="window.location='register';">New user? Register here</button>
+            <input type="button"  class="btn btn-danger" onClick="window.location='register';" value="New user? Register here">
   <div class="errorclass"><%= error %></div>
           </form>
 <div class="forgot" onclick="window.location='forgot'">

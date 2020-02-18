@@ -46,7 +46,8 @@ const userSchema = new mongoose.Schema ({
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   password: String,
-    premium: { type: Number, default: 0 }
+  premium: { type: Number, default: 0 },
+  user: String,
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -160,6 +161,25 @@ if(name.trim()==null){
 
 app.post("/register", function(req, res){
 
+  var un= req.body.user.trim();
+  if(un.length<1){
+    return  res.render("register",{error: "Enter the username to continue"});
+
+  }
+  if(un==un.toUpperCase()){
+    return  res.render("register",{error: "Username should be in lowercase"});
+  }
+if(un.indexOf(' ') >= 0){
+  return  res.render("register",{error: "Username cannot contain spaces"});
+}
+User.findOne({
+  user: un,
+},function(err,founditems){
+  if(founditems){
+      return res.render("register",{error: "Username already taken"});
+  }
+});
+
   User.findOne({
       username: req.body.username.toLowerCase(),
 
@@ -168,7 +188,7 @@ app.post("/register", function(req, res){
         res.render("register",{error: "User already exists, please login"});
 
       }else{
-        User.register({username: req.body.username.toLowerCase(),name:req.body.name}, req.body.password, function(err, user){
+        User.register({username: req.body.username.toLowerCase(),name:req.body.name,user:un}, req.body.password, function(err, user){
           if (err) {
             res.render("register",{error: err});
           } else {
@@ -365,7 +385,7 @@ io.on('connection', function(socket){
       if(user){
         if(message.text!=undefined){
           map[user.room] = message.text;
-        io.to(user.room).emit('newCode',generateCode(message.text));
+        socket.broadcast.to(user.room).emit('newCode',generateCode(message.text));
         }
       }
     });
