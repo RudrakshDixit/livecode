@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema ({
   password: String,
   premium: { type: Number, default: 0 },
   user: String,
+  codes: [{
+    title: String,
+    code: String,
+  }]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -142,14 +146,41 @@ app.get('/privacy-policy',function(req,res){
   else
   res.render("privacyPolicy",{islog: "false",name: ""});
 });
+app.get('/user/:name',function(req,res){
+  var name=req.params.name;
+  User.findOne(
+    {user:name},function(err,founditems){
+      if(err||!founditems){
+        if(req.isAuthenticated()){
 
+          res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+        }
+        else{
+          res.render("404",{islog: "false",name: ""});
+        }
+      }else{
+
+        if(req.isAuthenticated()){
+
+          res.render("user",{islog: "true",name: req.user.name.split(" ")[0],uname:founditems.name,user: founditems.user});
+
+        }
+        else{
+          res.render("user",{islog: "false",name: "",uname:founditems.name,user: founditems.user});
+        }
+      }
+    }
+  );
+
+});
 app.get("/:name",function(req,res){
 var name=req.params.name;
 if(name.trim()==null){
   res.redirect('/');
 }else{
   if(req.isAuthenticated()){
-    res.render("home",{islog: 'true',name: req.user.name.split(" ")[0]});
+    res.render("home",{islog: 'true',name: req.user.user});
 
   }else{
     res.render("home",{islog: 'false',name: ""});
@@ -192,6 +223,7 @@ User.findOne({
           if (err) {
             res.render("register",{error: err});
           } else {
+
             passport.authenticate("local")(req, res, function(){
               res.redirect("/login");
             });
@@ -409,13 +441,16 @@ io.on('connection', function(socket){
 });
 
 app.use((req,res,next)=>{
-  res.send("404");
+  if(req.isAuthenticated()){
+
+    res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+  }
+  else{
+    res.render("404",{islog: "false",name: ""});
+  }
 
 });
 server.listen(process.env.PORT||80,function(){
   console.log("server is started on port 80");
 });
-function fun1()
-{
- alert("hii");
-}
