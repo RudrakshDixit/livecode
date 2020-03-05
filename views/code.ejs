@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>User</title>
+    <title>Code</title>
     <link rel="icon" href="/images/favicon.ico?v=2" type="image/x-icon" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,37 +23,18 @@
           <!-- Bootstrap CSS -->
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<style media="screen">
-  .green{
-    font-size: 1.5rem;
-    color: grey;
-    letter-spacing: 2;
-    background-color: rgba(136,176,75,.2);
-    list-style: none;
-    margin: 2px;
-    border-bottom: .5px solid grey;
-    cursor: pointer;
+<style>
+  .code{
+    border: 0.5px solid blue;
+    background-color: rgba(0,86,255,.05);
     padding: 8px;
-  }
-  .red{
-    font-size: 1.5rem;
-    color: grey;
-    letter-spacing: 2;
-    background-color: rgba(255,111,97,.2);
-    list-style: none;
-    margin: 2px;
-    border-bottom: .5px solid grey;
-      cursor: pointer;
-      padding: 8px;
-  }
-
-  .green:hover{
-    background-color: rgba(136,199,75,.5);
+    height: 100%;
+    width: 100%;
+    resize: none;
+    cursor: auto;
+    font-size: 1rem;
     color: black;
-  }
-  .red:hover{
-      background-color: rgba(255,111,100,.5);
-      color: black;
+    font-family: 'Source Code Pro';
   }
 </style>
 
@@ -90,30 +71,25 @@
 
 <div class="grid2">
 <div class="container">
+  <nav class="navbar navbar-light">
+    <span class="toptext mr-auto"><%= code.title %></span> <button class="buttonn" onclick="window.location='/user/<%=user%>'"><%= uname %></button>
 
-<nav class="navbar navbar-light">
-  <span class="toptext"><%= uname %></span><h2 class="toptext2 mr-auto">(<%= user %>)</h2> <button class="buttonn" onclick="window.location='/user/<%=user%>/post'">New+</button>
+  </nav>
 
-</nav>
-
-
-<hr>
+<textarea disabled class="code">
+<%= code.code %>
+</textarea>
 
 
-  <% for(var i=codes.length-1;i>=0;i--){ %>
-    <% if(i%2==0){ %>
-        <li class="green" onclick="window.location= '/user/<%=user%>/<%=codes[i].title%>'"><%= codes[i].title %></li>
-    <% } else { %>
-      <li class="red" onclick="window.location= '/user/<%= user %>/<%=codes[i].title%>'"><%= codes[i].title %></li>
-    <% } %>
 
-  <% } %>
+
+
+
 
 
 </div>
 
   </div>
-</div>
 
 
 

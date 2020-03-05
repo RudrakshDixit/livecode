@@ -76,6 +76,7 @@ passport.deserializeUser(function(id, done) {
 let users= new Users();
 
 
+
 app.get("/",function(req,res){
   if(req.isAuthenticated()){
     res.render("index",{islog: "true",name: req.user.name.split(" ")[0]});
@@ -113,9 +114,6 @@ app.get('/forgot', function(req, res) {
   res.render('forgot',{msg: "",smsg:""});
 });
 
-app.get('/highlight', function(req, res) {
-  res.render('highlight');
-});
 
 app.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
@@ -139,7 +137,24 @@ app.get('/docs',function(req,res){
   else
   res.render("docs",{islog: "false",name: ""});
 });
+app.get('/confirm/:token',function(req,res){
+  User.findOne({ resetPasswordToken: req.params.token},function(error,user){
+ if(error||!user){
+   res.send("Error cannot verify email");
+ }else{
+   User.findOneAndUpdate({username: user.username},{
+     premium: 1,
+   },function(err){
+     if(err){
+       res.send("Error cannot verify email");
+     }else{
+       res.send("Email verified, You can <a href='/login'>login here ");
 
+     }
+   });
+ }
+  });
+});
 app.get('/privacy-policy',function(req,res){
   if(req.isAuthenticated())
   res.render("privacyPolicy",{islog: "true",name: req.user.name.split(" ")[0]});
@@ -161,18 +176,101 @@ app.get('/user/:name',function(req,res){
         }
       }else{
 
+        let codes=founditems.codes;
         if(req.isAuthenticated()){
 
-          res.render("user",{islog: "true",name: req.user.name.split(" ")[0],uname:founditems.name,user: founditems.user});
+          res.render("user",{islog: "true",name: req.user.name.split(" ")[0],uname:founditems.name,user: founditems.user,codes: codes});
 
         }
         else{
-          res.render("user",{islog: "false",name: "",uname:founditems.name,user: founditems.user});
+          res.render("user",{islog: "false",name: "",uname:founditems.name,user: founditems.user,codes: codes});
         }
       }
     }
   );
 
+});
+app.get('/user/:name/post',function(req,res){
+  var name=req.params.name;
+  User.findOne(
+    {user:name},function(err,founditems){
+      if(err||!founditems){
+        if(req.isAuthenticated()){
+
+          res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+        }
+        else{
+          res.render("404",{islog: "false",name: ""});
+        }
+      }else{
+        if(req.isAuthenticated()){
+          if(req.user.username==founditems.username){
+            if(founditems.premium==1){
+              res.render("post",{islog: "true",name: req.user.name.split(" ")[0],uname: req.user.user,error:""});
+
+            }else{
+              res.send("Verify your email to continue");
+            }
+
+          }else{
+            res.redirect("/");
+          }
+        }
+        else{
+            res.redirect('/login');
+         }
+      }
+    }
+  );
+});
+app.get("/user/:name/:name2",function(req,res){
+var user=req.params.name;
+var title=req.params.name2;
+User.findOne(
+  {user:user},function(err,founditems){
+    if(err||!founditems){
+      if(req.isAuthenticated()){
+
+        res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+      }
+      else{
+        res.render("404",{islog: "false",name: ""});
+      }
+    }else{
+    for(var i=0;i<founditems.codes.length;i++){
+      if(founditems.codes[i].title==title){
+        if(req.isAuthenticated()){
+        return res.render("code",{islog: "true",name: req.user.name.split(" ")[0],uname:founditems.name,user: founditems.user,code: founditems.codes[i]});
+
+
+        }
+        else{
+        return res.render("code",{islog: "false",name: "",uname:founditems.name,user: founditems.user,code: founditems.codes[i]});
+
+        }
+      }
+
+    }
+    if(req.isAuthenticated()){
+
+      res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+    }
+    else{
+      res.render("404",{islog: "false",name: ""});
+    }
+    }
+  }
+);
+});
+app.get("/home",function(req,res){
+  if(req.isAuthenticated()){
+  res.redirect('/user/'+req.user.user);
+}else{
+  res.redirect('/login');
+}
 });
 app.get("/:name",function(req,res){
 var name=req.params.name;
@@ -189,7 +287,64 @@ if(name.trim()==null){
 }
 });
 
+app.post("/user/:name/post",function(req,res){
+  var name=req.params.name;
+  User.findOne(
+    {user:name},function(err,founditems){
+      if(err||!founditems){
+        if(req.isAuthenticated()){
 
+          res.render("404",{islog: "true",name: req.user.name.split(" ")[0]});
+
+        }
+        else{
+          res.render("404",{islog: "false",name: ""});
+        }
+      }else{
+        if(req.isAuthenticated()){
+          if(req.user.username==founditems.username){
+            if(founditems.premium==1){
+            var title=req.body.title.split(/\s/).join('');
+            var code=req.body.code;
+            for(var i=0;i<founditems.codes.length;i++){
+              if(founditems.codes[i].title==title){
+
+                return res.render("post",{islog: "true",name: req.user.name.split(" ")[0],uname: req.user.user,error:"Title name already exists, try something else"});
+
+              }
+            }
+            User.findOneAndUpdate({username: req.user.username},{
+                $push: {
+                  codes: {
+                    title: title,
+                    code: code,
+
+                  },
+
+                }
+              },function(err){
+                if(err){
+                  console.log(err);
+                }else{
+                  res.redirect("/user/"+req.user.user);
+                }
+              });
+
+            }else{
+              res.send("Verify your email to continue");
+            }
+
+          }else{
+            res.redirect("/");
+          }
+        }
+        else{
+            res.redirect('/login');
+         }
+      }
+    }
+  );
+});
 app.post("/register", function(req, res){
 
   var un= req.body.user.trim();
@@ -225,7 +380,55 @@ User.findOne({
           } else {
 
             passport.authenticate("local")(req, res, function(){
-              res.redirect("/login");
+              async.waterfall([
+                function(done) {
+                  crypto.randomBytes(20, function(err, buf) {
+                    var token = buf.toString('hex');
+                    done(err, token);
+                  });
+                },
+                function(token, done) {
+                  User.findOne({ username: req.body.username.toLowerCase() }, function(err, user) {
+                    user.resetPasswordToken = token;
+                    user.resetPasswordExpires = Date.now() + 360000000; // 1 hour
+
+                    user.save(function(err) {
+                      done(err, token, user);
+                    });
+                  });
+                },
+                function(token, user, done) {
+                  var smtpTransport = nodemailer.createTransport({
+                    service: 'Gmail',
+                    host: 'domain',
+                 port: 587,
+                 secure: false, // use SSL
+                 debug: true,
+
+                    auth: {
+                      user: 'LiveCode05@gmail.com',
+                      pass: process.env.GMAILPW
+                    }
+                  });
+                  var mailOptions = {
+                    to: user.username,
+                    from: 'LiveCode05@gmail.com',
+                    subject: 'Confirm your email address',
+                    text: 'You are receiving this because you (or someone else) have registerd on Livecode.in.\n\n' +
+                      'Please click on the following link, or paste this into your browser to verify your email address:\n\n' +
+                      'https://' + req.headers.host + '/confirm/' + token + '\n\n' +
+                      'If you did not request this, please ignore this email.\n'
+                  };
+                  smtpTransport.sendMail(mailOptions, function(err) {
+                  res.render("register",{error: 'Check your mail to verify your account'});
+
+                    done(err, 'done');
+                  });
+                }
+              ], function(err) {
+                if (err) return next(err);
+                res.render("register",{error: err});
+              });
             });
           }
         });
@@ -260,7 +463,7 @@ app.post("/login", function(req, res){
      } else {
        passport.authenticate("local")(req, res, function(){
 
-         res.redirect("/");
+         res.redirect("/user/"+founditems.user);
        });
      }
    });

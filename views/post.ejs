@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>User</title>
+    <title>Post</title>
     <link rel="icon" href="/images/favicon.ico?v=2" type="image/x-icon" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -22,41 +22,72 @@
 
           <!-- Bootstrap CSS -->
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
 
-<style media="screen">
-  .green{
-    font-size: 1.5rem;
-    color: grey;
-    letter-spacing: 2;
-    background-color: rgba(136,176,75,.2);
-    list-style: none;
-    margin: 2px;
-    border-bottom: .5px solid grey;
-    cursor: pointer;
+  .welc{
+    color: white;
+    font-size: 1rem;
+  }
+  .formc{
+    margin: 1rem;
+
     padding: 8px;
+    text-align: center;
   }
-  .red{
-    font-size: 1.5rem;
-    color: grey;
-    letter-spacing: 2;
-    background-color: rgba(255,111,97,.2);
-    list-style: none;
-    margin: 2px;
-    border-bottom: .5px solid grey;
-      cursor: pointer;
-      padding: 8px;
-  }
-
-  .green:hover{
-    background-color: rgba(136,199,75,.5);
+  .textarea{
+    width: 50%;
+    height: 50%;
+    background-color: rgba(186,198,205,.1);
+    padding: 8px;
     color: black;
+    border: .5px solid black;
+    border-radius: 10px;
+    font-family: 'Montserrat'
   }
-  .red:hover{
-      background-color: rgba(255,111,100,.5);
-      color: black;
+  .titlee{
+    width: 50%;
+    background-color: rgba(20,169,235,.1);
+    padding: 8px;
+    color: black;
+    border: .5px solid black;
+    border-radius: 10px;
+    font-family: 'Montserrat'
+  }
+  .rdstyle{
+    font-size: .7rem;
+    color: #a3a3a3;
+    text-align: center;
+
+    margin-bottom: .4rem;
+    margin-top: .1;
   }
 </style>
+<script type="text/javascript">
+  function myFunction(){
+    var title=$(".titlee").val();
+    var texta=$(".textarea").val();
 
+    if(title.trim().length==0){
+      $(".titlee").css("border-color","red");
+      $(".titlee").css("border-width","2px");
+      $(".alertnametext").text("Title cannot be empty");
+      return false;
+    }else if(texta.trim().length==0){
+      $(".textarea").css("border-color","red");
+      $(".textarea").css("border-width","2px");
+      $(".alertcodetext").text("Please enter the code");
+      return false;
+    }else if(title=="post"){
+      $(".titlee").css("border-color","red");
+      $(".titlee").css("border-width","2px");
+      $(".alertnametext").text("Please use some other name");
+      return false;
+    }
+
+
+    return true;
+  }
+</script>
   </head>
 
   <body>
@@ -71,7 +102,7 @@
 
 
             <% if (islog=="true") { %>
-              <h2 class="wel"> Welcome <%= name %></h2>
+              <h2 class="welc"> Welcome <%= name %></h2>
             <% } else { %>
 
               <button class="btn btn-danger my-2 my-sm-0 button2  "  onClick="window.location='/register';">SignUp</button>
@@ -91,24 +122,26 @@
 <div class="grid2">
 <div class="container">
 
-<nav class="navbar navbar-light">
-  <span class="toptext"><%= uname %></span><h2 class="toptext2 mr-auto">(<%= user %>)</h2> <button class="buttonn" onclick="window.location='/user/<%=user%>/post'">New+</button>
+<form class="formc" action="/user/<%= uname %>/post" onSubmit="return myFunction()" method="post">
+  <div class="form-group">
+    <label for="text">Title:</label>
+  <input class="titlee" type="text" name="title" value="" placeholder="Your title goes here">
+    <div class="alertnametext rdstyle">
+      <%= error %>
 
-</nav>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="text">Code:</label>
+  <textarea class="textarea" rows='10' name="code" value="" placeholder="Your code goes here"></textarea>
+    <div class="alertcodetext rdstyle">
 
+    </div>
+  </div>
 
-<hr>
+<input type="submit" class="btn btn-danger"  value="Post">
 
-
-  <% for(var i=codes.length-1;i>=0;i--){ %>
-    <% if(i%2==0){ %>
-        <li class="green" onclick="window.location= '/user/<%=user%>/<%=codes[i].title%>'"><%= codes[i].title %></li>
-    <% } else { %>
-      <li class="red" onclick="window.location= '/user/<%= user %>/<%=codes[i].title%>'"><%= codes[i].title %></li>
-    <% } %>
-
-  <% } %>
-
+</form>
 
 </div>
 
